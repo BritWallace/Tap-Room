@@ -1,11 +1,11 @@
 import React from "react";
-import KegImage from "./../Img/keg.png";
+import kegImage from "./../img/keg.png";
 
 function Header() {
   return (
     <React.Fragment>
     <h1>Tap Site</h1>
-    <img src={KegImage} alt="keg" />
+    <img src={kegImage} alt="A keg" />
     </React.Fragment>
   );
 }
