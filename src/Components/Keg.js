@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function Tap(prop){
+function Keg(prop){
   return (
     <React.Fragment>
       <div onClick = {() => whenTapClicked(props.id)}>
@@ -14,13 +14,13 @@ function Tap(prop){
   );
 }
 
-Tap.propType = {
+Keg.propType = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number,
   alcoholContent: PropTypes.number,
   pints: PropType.number,
   id: PropTypes.string,
-  whenTapClicked: PropTypes.func,
+  // whenTapClicked: PropTypes.func,
 
 
   
