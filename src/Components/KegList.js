@@ -1,30 +1,28 @@
-import React from 'react';
-import Keg from './Keg';
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
 
-function KegList(props) {
+function Keg(props) {
+  const stockCheck = props.pints === 0 ? "Out of Stock" : props.pints;
   return (
     <React.Fragment>
-      <hr />
-      {props.kegList.map((keg) => 
-      <Keg
-      whenKegClicked = {props.onKegSelection}
-      name={keg.name}
-      brand={keg.brand}
-      price={keg.price} 
-      alcoholContent={keg.alcoholContent}
-      pints={keg.pints}
-      id={keg.id}
-      key={keg.id} />
-    )}  
-  </React.Fragment>
+      <div onClick= {() => props.whenKegClicked(props.id)}>
+        <h3>{props.name} - {props.brand}</h3>
+        <p>Price: ${props.price}</p>
+        <p>Alcohol Content: <em>{props.alcoholContent}%</em></p>
+        <p>Pints: {stockCheck}</p>
+        <hr />
+      </div>
+    </React.Fragment>
   );
 }
 
-KegList.propType = {
-  kegList: PropTypes.array,
-  onKegSelection: PropTypes.func
+Keg.propTypes = {
+  name: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  alcoholContent: PropTypes.string.isRequired,
+  pints: PropTypes.number.isRequired,
+  whenKegClicked: PropTypes.func
 }
 
-export default KegList;
+export default Keg

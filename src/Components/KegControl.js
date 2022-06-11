@@ -35,6 +35,7 @@ class KegControl extends React.Component {
 render(){
     let currentlyVisibleState = null; 
     let addKegButton = null;
+    let buttonText = null;
     if (this.state.editing){
       currentlyVisibleState = <EditKegForm keg = {this.state.selectedKeg} onEditKeg = {this.handleEditingKegInList} />
       buttonText = "Return to keg list"
