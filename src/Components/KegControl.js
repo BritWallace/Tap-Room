@@ -2,7 +2,7 @@ import React from 'react';
 import NewKegForm from './NewKegForm';
 import KegList from './KegList';
 import KegDetail from './KegDetail';
-// import EditKegForm from './EditKegForm';
+import EditKegForm from './EditKegForm';
 
 class KegControl extends React.Component {
   constructor(props){
@@ -51,7 +51,54 @@ handleDeletingKeg = (id) => {
   });
 
 }
+handleEditClick = () => {
+  this.setState({editing:true});
+}
 
+handleEditingKegInList = (kegToEdit) => {
+  const editedMainKegList = this.state.mainKegList
+    .filter(keg => keg.id !== this.state.selectedKeg.id)
+    .concat(kegToEdit);
+  this.setState({
+    mainKegList: editedMainKegList,
+    editing: false,
+    selectedKeg: null
+  });
+}
+
+handleIncreasingKegStock = (id) => {
+  if(this.state.mainKegList > 1) {
+    const selectedKeg = this.state.mainKegList.filter(keg => keg.id === id)[0]
+    selectedKeg.pints++;
+    const newMainKegList = this.state.mainKegList.filter(keg => keg.id !==id).concat(selectedKeg);
+    this.setState({mainKegList:newMainKegList});
+  } else {
+    const selectedKeg = this.state.mainKegList.filter(keg => keg.id === id)[0]
+    selectedKeg.pints++;
+    const newKegListArray = [];
+    const changedKegArray = newKegListArray.concat(selectedKeg);
+    this.setState({
+      mainKegList: changedKegArray
+    });
+  }
+}
+
+handleDecreasingKegStock = (id) => {
+  if(this.state.mainKegList > 1) {
+    const selectedKeg = this.state.mainKegList.filter(keg => keg.id === id)[0]
+    selectedKeg.pints--;
+    const newMainKegList = this.state.mainKegList.filter(keg => keg.id !==id).concat(selectedKeg);
+    this.setState({mainKegList:newMainKegList});
+  } else {
+    const selectedKeg = this.state.mainKegList.filter(keg => keg.id === id)[0]
+    selectedKeg.pints--;
+    const newKegListArray = [];
+    const changedKegArray = newKegListArray.concat(selectedKeg);
+    this.setState({
+      mainKegList: changedKegArray
+    });
+  }
+}
 
 
 
