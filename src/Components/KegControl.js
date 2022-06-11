@@ -37,7 +37,20 @@ class KegControl extends React.Component {
     });
   }
 
+handleChangingSelectedKeg = (id) => {
+  const selectedKeg =this.state.mainKegList.filter(keg=> keg.id === id) [0];
+  this.setState({selectedKeg: selectedKeg});
+}
 
+handleDeletingKeg = (id) => {
+  const newMainKegList = this.state.mainKegList.filter(keg => keg.id !==id);
+  this.setState({
+    mainKegList: newMainKegList,
+    selectedKeg: newMainKegList,
+    selectedKeg: null
+  });
+
+}
 
 
 
