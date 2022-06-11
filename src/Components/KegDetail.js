@@ -9,9 +9,29 @@ function KegDetail(props) {
     <React.Fragment>
     <h1>KegDetail</h1>
     <hr />
+    <h3>Name: {keg.name}</h3>
+    <h3>Brand: {keg.brand}</h3>
+    <hr />
+    <p>Alcohol Content: {keg.alcoholContent}%</p>
+    <p>Price: ${keg.price}%</p>
+    <p>Pints left: {pints}</p>
+    <button onClick={() => onClickIncrease(keg.id)}>Restock</button>
+    <button onClick={() => onClickDelete(keg.id)}>Delete keg</button>
+    {buyButton}
+
+
     </React.Fragment>
 
 
-  )
+  );
 }
+
+KegDetail.PropTypes = {
+  keg: PropTypes.object,
+  onClickingDelete: PropTypes.func,
+  onClickingIncrease: PropTypes.func,
+  onClickingEdit: PropTypes.func,
+}
+
+export default KegDetail;
 
