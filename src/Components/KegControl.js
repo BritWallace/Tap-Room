@@ -2,6 +2,7 @@ import React from 'react';
 import NewKegForm from './NewKegForm';
 import KegList from './KegList';
 import KegDetail from './KegDetail';
+// import EditKegForm from './EditKegForm';
 
 class KegControl extends React.Component {
   constructor(props){
@@ -28,6 +29,17 @@ class KegControl extends React.Component {
       }));
     }
   }
+  handelAddingNewKegToList = (newKeg) => {
+    const newMainKegList = this.state.mainKegList.concat(newKeg);
+    this.setState ({
+      mainKegList: newMainKegList,
+      formVisibleOnPage: false
+    });
+  }
+
+
+
+
 
 
   
