@@ -2,7 +2,7 @@
 
 #### By _**Brit Wallace**_
 
-#### _Tap Room... _
+#### _A React app that tracks kegs of beer and includes details like price, and alcohol percentage. _
 
 ## Technologies Used
 
@@ -19,6 +19,10 @@
 ## Description
 
 _A React app that can keep track of the party._
+
+## Component Diagram
+
+![component diagram](./src/img/)
 
 ## Component Diagram
 ![Component Diagram](https://github.com/BritWallace/Tap-Room/blob/main/src/Img/Merch%20Site%20Diagram.jpg?raw=true)  
