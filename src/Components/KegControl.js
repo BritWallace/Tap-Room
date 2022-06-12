@@ -29,7 +29,7 @@ class KegControl extends React.Component {
       }));
     }
   }
-  handelAddingNewKegToList = (newKeg) => {
+  handleAddingNewKegToList = (newKeg) => {
     const newMainKegList = this.state.mainKegList.concat(newKeg);
     this.setState ({
       mainKegList: newMainKegList,
@@ -37,86 +37,85 @@ class KegControl extends React.Component {
     });
   }
 
-handleChangingSelectedKeg = (id) => {
-  const selectedKeg =this.state.mainKegList.filter(keg=> keg.id === id) [0];
-  this.setState({selectedKeg: selectedKeg});
-}
+  handleChangingSelectedKeg = (id) => {
+    const selectedKeg =this.state.mainKegList.filter(keg=> keg.id === id) [0];
+    this.setState({selectedKeg: selectedKeg});
+  }
 
-handleDeletingKeg = (id) => {
-  const newMainKegList = this.state.mainKegList.filter(keg => keg.id !==id);
-  this.setState({
-    mainKegList: newMainKegList,
-    selectedKeg: newMainKegList,
-    selectedKeg: null
-  });
+  handleDeletingKeg = (id) => {
+    const newMainKegList = this.state.mainKegList.filter(keg => keg.id !==id);
+    this.setState({
+      mainKegList: newMainKegList,
+      selectedKeg: newMainKegList,
+      selectedKeg: null
+    });
 
-}
-handleEditClick = () => {
+  }
+  handleEditClick = () => {
   this.setState({editing:true});
-}
+  }
 
-handleEditingKegInList = (kegToEdit) => {
+  handleEditingKegInList = (kegToEdit) => {
   const editedMainKegList = this.state.mainKegList
-    .filter(keg => keg.id !== this.state.selectedKeg.id)
-    .concat(kegToEdit);
+  .filter(keg => keg.id !== this.state.selectedKeg.id)
+  .concat(kegToEdit);
   this.setState({
-    mainKegList: editedMainKegList,
-    editing: false,
-    selectedKeg: null
+  mainKegList: editedMainKegList,
+  editing: false,
+  selectedKeg: null
   });
-}
-
-handleIncreasingKegStock = (id) => {
-  if(this.state.mainKegList > 1) {
-    const selectedKeg = this.state.mainKegList.filter(keg => keg.id === id)[0]
-    selectedKeg.pints++;
-    const newMainKegList = this.state.mainKegList.filter(keg => keg.id !==id).concat(selectedKeg);
-    this.setState({mainKegList:newMainKegList});
-  } else {
-    const selectedKeg = this.state.mainKegList.filter(keg => keg.id === id)[0]
-    selectedKeg.pints++;
-    const newKegListArray = [];
-    const changedKegArray = newKegListArray.concat(selectedKeg);
-    this.setState({
-      mainKegList: changedKegArray
-    });
   }
-}
 
-handleDecreasingKegStock = (id) => {
+  handleIncreasingKegStock = (id) => {
   if(this.state.mainKegList > 1) {
-    const selectedKeg = this.state.mainKegList.filter(keg => keg.id === id)[0]
-    selectedKeg.pints--;
-    const newMainKegList = this.state.mainKegList.filter(keg => keg.id !==id).concat(selectedKeg);
-    this.setState({mainKegList:newMainKegList});
+  const selectedKeg = this.state.mainKegList.filter(keg => keg.id === id)[0]
+  selectedKeg.pints++;
+  const newMainKegList = this.state.mainKegList.filter(keg => keg.id !==id).concat(selectedKeg);
+  this.setState({mainKegList:newMainKegList});
   } else {
-    const selectedKeg = this.state.mainKegList.filter(keg => keg.id === id)[0]
-    selectedKeg.pints--;
-    const newKegListArray = [];
-    const changedKegArray = newKegListArray.concat(selectedKeg);
-    this.setState({
-      mainKegList: changedKegArray
-    });
+  const selectedKeg = this.state.mainKegList.filter(keg => keg.id === id)[0]
+  selectedKeg.pints++;
+  const newKegListArray = [];
+  const changedKegArray = newKegListArray.concat(selectedKeg);
+  this.setState({
+    mainKegList: changedKegArray
+  });
   }
-}
+  }
+
+  handleDecreasingKegStock = (id) => {
+  if(this.state.mainKegList > 1) {
+  const selectedKeg = this.state.mainKegList.filter(keg => keg.id === id)[0]
+  selectedKeg.pints--;
+  const newMainKegList = this.state.mainKegList.filter(keg => keg.id !==id).concat(selectedKeg);
+  this.setState({mainKegList:newMainKegList});
+  } else {
+  const selectedKeg = this.state.mainKegList.filter(keg => keg.id === id)[0]
+  selectedKeg.pints--;
+  const newKegListArray = [];
+  const changedKegArray = newKegListArray.concat(selectedKeg);
+  this.setState({
+    mainKegList: changedKegArray
+  });
+  }
+  }
 
 
 
-  
 
-render(){
+
+  render(){
     let currentlyVisibleState = null; 
-    let addKegButton = null;
     let buttonText = null;
     if (this.state.editing){
       currentlyVisibleState = <EditKegForm keg = {this.state.selectedKeg} onEditKeg = {this.handleEditingKegInList} />
       buttonText = "Return to keg list"
     } else if (this.state.selectedKeg != null) {
-      currentlyVisibleState = <KegDetails
+      currentlyVisibleState = <KegDetail
         keg={this.state.selectedKeg}
-        onClickDecrement={this.handleDecrementKegStock}
-        onClickIncrease={this.handleIncreaseKegStock}
-        onClickDelete={this.handleDeleteKeg}
+        onClickDecrease={this.handleDecreasingKegStock}
+        onClickIncrease={this.handleIncreasingKegStock}
+        onClickDelete={this.handleDeletingKeg}
         onClickEdit={this.handleEditKeg} />
       buttonText = "Return to keg list"
     } else if (this.state.formVisibleOnPage) {
@@ -124,7 +123,7 @@ render(){
       buttonText = "Return to Keg List";
     } else {
       currentlyVisibleState = <KegList kegList={this.state.mainKegList} onKegSelection = {this.handleChangingSelectedKeg}/>
-      // buttonText = "Add Keg";
+      buttonText = "Add Keg";
     }
     
     
@@ -133,13 +132,15 @@ render(){
   return(
     <React.Fragment>
       {currentlyVisibleState}
-        {/* <button onClick={this.handleClick}>{buttonText}</button> */}
+        <button onClick={this.handleClick}>{buttonText}</button>
 
     </React.Fragment>
   )
 
   }
 }
+
+
 
 
 export default KegControl;
