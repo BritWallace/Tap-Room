@@ -31,7 +31,8 @@ _A React app that can keep track of the party._
 * _Clone this repository from https://github.com/BritWallace/Tap-Room.git_
 * _Open project in the code editor of your choice._
 * _In the root directory enter the command npm install_
-* _Then run npm start to view in the browser._
+* _Run: npm install animate.css --save to get animation.
+* _Run: npm start to view in the browser._
 
 
 ## Known Bugs
